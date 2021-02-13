@@ -1,0 +1,95 @@
+\documentclass[a4 paper]{article}
+% Set target color model to RGB
+\usepackage[inner=2.0cm,outer=2.0cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{setspace}
+\usepackage[rgb]{xcolor}
+\usepackage{verbatim}
+\usepackage{subcaption}
+
+\usepackage{amsgen,amsmath,amstext,amsbsy,amsopn,tikz,amssymb,tkz-linknodes}
+\usepackage{fancyhdr}
+\usepackage[colorlinks=true, urlcolor=blue,  linkcolor=blue, citecolor=blue]{hyperref}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{rotating}
+\newcommand{\Def}{\overset{\text{def}}{=}}
+\newcommand{\bOne}{\mathbf{1}}
+\newcommand{\BP}{\mathbb{P}}
+\newcommand{\BE}{\mathbb{E}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\filt}{\mathscr{F}}
+\newcommand{\gilt}{\mathscr{G}}
+\newcommand{\wilt}{\mathscr{W}}
+\newcommand{\vilt}{\mathscr{V}}
+\newcommand{\lb}{\left\{}
+\newcommand{\rb}{\right\}}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\newcommand{\la}{\left\langle}
+\newcommand{\ra}{\right\rangle}
+\newcommand{\bP}{\mathbf{P}}
+\DeclareMathOperator{\Erf}{erf}
+\newcommand{\Normal}{\mathcal{N}}
+\newcommand{\grad}{\nabla}
+%\usetikzlibrary{through,backgrounds}
+\hypersetup{%
+pdfauthor={Ashudeep Singh},%
+pdftitle={Homework},%
+pdfkeywords={Tikz,latex,bootstrap,uncertaintes},%
+pdfcreator={PDFLaTeX},%
+pdfproducer={PDFLaTeX},%
+}
+%\usetikzlibrary{shadows}
+% \usepackage[francais]{babel}
+\usepackage{booktabs}
+\input{macros.tex}
+\usepackage{booktabs}
+\input{macros.tex}
+\usepackage{eso-pic}
+\newcommand\BackgroundPic{
+\put(16, 28){
+\parbox[t]{\textwidth}{
+\includegraphics[scale=0.4,keepaspectratio]{logo.png}%
+}
+}
+} 
+
+\begin{document}
+\AddToShipoutPicture*{\setlength{\unitlength}{1cm}\BackgroundPic} 
+\homework{Homework \#2}{Due: Feb-14-2021}{Richard B. Sowers}
+\textbf{ }: Read all the instructions below carefully before you start working on the assignment, and before you make a submission.
+\begin{itemize}
+        \item \textbf{This is a group homework, every group only submit ONE solution on Compass .} Please include the names of all the group members. 
+    \item \textbf{Due time is at 11:59pm} at the due date. \textbf{No late submission!}
+    \item All students are expected to abide by the Honor Code
+    \item All date-times will be in Champaign-Urbana
+    \item Please put your typed solution in a PDF format. For code, you can either submit it in .py file or jupyter notebook file also with its google colab shared link in your solution PDF file.
+\end{itemize}
+\problem{1: EntropyConvex}{10}
+%%%%%%%%%%%%%%
+With
+\begin{equation*} H(p',p)\Def p'\ln \frac{p'}{p}+(1-p')\ln \frac{1-p'}{1-p} \end{equation*}
+for $p$ and $p'$ in $(0,1)$, show that $p'\mapsto H(p',p)$ is convex for each $p\in (0,1)$.
+
+
+\problem{2: FenchelB}{\textcolor{red}{Extra credit} 10}
+Let's use \emph{entropy} as a pretext for understanding Euler's equations of optimality.  For $p$ and $p'$ in $(0,1)$, relative entropy is (as usual)
+\begin{equation*} H(p',p)\Def p'\ln \frac{p'}{p}+(1-p')\ln \frac{1-p'}{1-p} \end{equation*}
+Entropy is a fundamental concept in both statistical mechanics and information theory, as it is the \emph{Legendre-Fenchel} transform (an object of interest in tail behavior due to the Ellis-G\"artner theorem) of the logarithm of the moment generating function of a Bernoulli random variable.  Fixing $p$ and $p'$ in $(0,1)$, compute
+\begin{equation*}  \max_{\theta \in (0,1)} \lb \theta p-\ln \lb p'e^\theta+(1-p')\rb \rb \end{equation*}
+Note that $p'e^\theta +(1-p')$ is indeed the moment generating function of a Bernoulli$(p')$ random variable.
+
+
+\problem{3: Coding question}{10}
+Take $N=200$ Gaussian points on the line centered at 0 and with variance 1. Assign label 1 to the ones to the right of the origin and assign label 0 to the ones on the left of the origin. Carry out the following with PyTorch
+
+\subproblem{1}
+Carry out logistic regression, and note the width of the transition layer. If your logit function $\log(\frac{P}{1-P})=mx+b,$ then the width is defined as $\frac{1}{m}.$
+\subproblem{2}
+Flip 5 points on each side of the origin to the 'wrong' label and note the width of the transition layer
+\subproblem{3}
+Repeat this for 15, 20, 25, 30, 35 points and plot the width of the transition layer as a function of the number of points with the 'wrong' label. 
+
+\end{document} 
